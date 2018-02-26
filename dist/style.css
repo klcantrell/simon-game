@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #86a096; }
+
+.simon {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#youMessage, #resetMessage, #winMessage {
+  visibility: hidden; }
+
+.board {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 50%;
+  border: 30px solid #25282b;
+  overflow: hidden; }
+  @media screen and (max-width: 500px) {
+    .board {
+      width: 299.4012px;
+      height: 299.4012px; } }
+
+.green {
+  flex: 50%;
+  border: 10px solid #25282b;
+  transition: background 1s;
+  border-radius: 30px;
+  background: #44c128; }
+
+.green--game-started {
+  background: rgba(68, 193, 40, 0.25); }
+
+.green--played {
+  background: #49fa22;
+  transition: background 300ms; }
+
+.red {
+  flex: 50%;
+  border: 10px solid #25282b;
+  transition: background 1s;
+  border-radius: 30px;
+  background: #c92626; }
+
+.red--game-started {
+  background: rgba(201, 38, 38, 0.25); }
+
+.red--played {
+  background: #fd2525;
+  transition: background 300ms; }
+
+.yellow {
+  flex: 50%;
+  border: 10px solid #25282b;
+  transition: background 1s;
+  border-radius: 30px;
+  background: #c9c926; }
+
+.yellow--game-started {
+  background: rgba(201, 201, 38, 0.25); }
+
+.yellow--played {
+  background: #fdfd25;
+  transition: background 300ms; }
+
+.blue {
+  flex: 50%;
+  border: 10px solid #25282b;
+  transition: background 1s;
+  border-radius: 30px;
+  background: #2522b7; }
+
+.blue--game-started {
+  background: rgba(37, 34, 183, 0.25); }
+
+.blue--played {
+  background: #130ffd;
+  transition: background 300ms; }
+
+.green {
+  border-top: 0;
+  border-left: 0; }
+
+.red {
+  border-top: 0;
+  border-right: 0; }
+
+.yellow {
+  border-left: 0;
+  border-bottom: 0; }
+
+.blue {
+  border-right: 0;
+  border-bottom: 0; }
+
+.console {
+  height: 185.18519px;
+  width: 185.18519px;
+  background: #d8d0d6;
+  border-radius: 40%;
+  border: 1px solid #25282b;
+  position: absolute;
+  align-self: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center; }
+  @media screen and (max-width: 500px) {
+    .console {
+      height: 133.33333px;
+      width: 133.33333px; } }
+
+.console__message {
+  margin-top: 13%; }
+
+.console__steps {
+  font-size: 22px;
+  color: #00cbff;
+  background: #25282b;
+  border: 1px solid #25282b;
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin: 1%; }
+  @media screen and (max-width: 500px) {
+    .console__steps {
+      font-size: 13px; } }
+
+.console__controls {
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%; }
+  @media screen and (max-width: 500px) {
+    .console__controls {
+      margin: 5%; } }
+
+.console__start {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  outline: none;
+  background: lightgreen;
+  border-color: white; }
+  .console__start::after {
+    content: 'Start';
+    font-family: "Lato", sans-serif;
+    position: absolute;
+    transform: translateX(-50%) translateY(100%); }
+  @media screen and (max-width: 500px) {
+    .console__start {
+      width: 22px;
+      height: 22px; }
+      .console__start::after {
+        transform: translateX(-50%) translateY(-160%); } }
+
+.console__strict {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  border-radius: 50%;
+  background: white; }
+  .console__strict label {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    background: lightgrey;
+    border-radius: 50%; }
+    .console__strict label::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+      top: 2px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      opacity: 0; }
+    .console__strict label:hover::after {
+      opacity: 0.4; }
+    @media screen and (max-width: 500px) {
+      .console__strict label {
+        width: 14px;
+        height: 14px; }
+        .console__strict label::after {
+          width: 12px;
+          height: 12px;
+          top: 1px; } }
+  .console__strict input[type=checkbox] {
+    visibility: hidden; }
+    .console__strict input[type=checkbox]:checked + label::after {
+      opacity: 1; }
+  .console__strict::after {
+    content: 'Strict';
+    font-family: "Lato", sans-serif;
+    font-size: 0.85rem;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-10%) translateY(45%); }
+  @media screen and (max-width: 500px) {
+    .console__strict {
+      width: 17px;
+      height: 17px; }
+      .console__strict::after {
+        transform: translateX(-20%) translateY(5%); } }
+
+.console__reset {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  outline: none;
+  background: lightblue;
+  border-color: white; }
+  .console__reset::after {
+    content: 'Reset';
+    font-family: "Lato", sans-serif;
+    position: absolute;
+    transform: translateX(-50%) translateY(100%); }
+  @media screen and (max-width: 500px) {
+    .console__reset {
+      width: 22px;
+      height: 22px; }
+      .console__reset::after {
+        transform: translateX(-50%) translateY(-160%); } }
+
+@media screen and (max-width: 500px) {
+  .console__message {
+    width: 99px;
+    height: 33px; } }
