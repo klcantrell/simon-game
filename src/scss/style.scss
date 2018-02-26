@@ -1,0 +1,253 @@
+$board-size: 500px;
+$button-classes: '.green', '.red', '.yellow', '.blue';
+$button-colors: ('.green': #44c128, '.red': #c92626, '.yellow': #c9c926, '.blue': #2522b7);
+
+$light: #d8d0d6;
+$main-background: #86a096;
+$border-color: #25282b;
+
+@function saturateAndLighten($color) {
+  $lightened: lighten($color, 10%);
+  @return saturate($lightened, 30%);
+}
+
+@mixin all-color-buttons {
+  @each $button-class in $button-classes {
+    $color: map-get($button-colors, #{$button-class});
+    #{$button-class} {
+      @content;
+      background: $color;
+    }
+    #{$button-class}--game-started {
+      background: transparentize($color, 0.75);
+    }
+    #{$button-class}--played {
+      background: saturateAndLighten($color);
+      transition: background 300ms;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $main-background;
+}
+
+.simon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#youMessage, #resetMessage, #winMessage {
+  visibility: hidden;
+}
+
+.board {
+  width: $board-size;
+  height: $board-size;
+  margin: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 50%;
+  border: 30px solid $border-color;
+  overflow: hidden;
+  @media screen and (max-width: 500px) {
+    width: $board-size / 1.67;
+    height: $board-size / 1.67;
+  }
+}
+
+@include all-color-buttons {
+  flex: 50%;
+  border: 10px solid $border-color;
+  transition: background 1s;
+  border-radius: 30px;
+}
+
+.green {
+  border-top: 0;
+  border-left: 0;
+}
+
+.red {
+  border-top: 0;
+  border-right: 0;
+}
+
+.yellow {
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.blue {
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.console {
+  height: $board-size / 2.7;
+  width: $board-size / 2.7;
+  background: $light;
+  border-radius: 40%;
+  border: 1px solid $border-color;
+  position: absolute;
+  align-self: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  @media screen and (max-width: 500px) {
+    height: $board-size / 3.75;
+    width: $board-size / 3.75;
+  }
+}
+
+.console__message {
+  margin-top: 13%;
+}
+
+.console__steps {
+  font-size: 22px;
+  color: #00cbff;
+  background: $border-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin: 1%;
+  @media screen and (max-width: 500px) {
+    font-size: 13px;
+  }
+}
+
+.console__controls {
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  @media screen and (max-width: 500px) {
+    margin: 5%;
+  }
+}
+
+.console__start {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  outline: none;
+  background: lightgreen;
+  border-color: white;
+  &::after {
+    content: 'Start';
+    font-family: "Lato", sans-serif;
+    position: absolute;
+    transform: translateX(-50%) translateY(100%);
+  }
+  @media screen and (max-width: 500px) {
+    width: 22px;
+    height: 22px;
+    &::after {
+      transform: translateX(-50%) translateY(-160%);
+    }
+  }
+}
+
+.console__strict {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  border-radius: 50%;
+  background: white;
+  label {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    background: lightgrey;
+    border-radius: 50%;
+    &::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+      top: 2px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      opacity: 0;
+    }
+    &:hover::after {
+      opacity: 0.4;
+    }
+    @media screen and (max-width: 500px) {
+      width: 14px;
+      height: 14px;
+      &::after {
+        width: 12px;
+        height: 12px;
+        top: 1px;
+      }
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label::after {
+      opacity: 1;
+    }
+  }
+  &::after {
+    content: 'Strict';
+    font-family: "Lato", sans-serif;
+    font-size: 0.85rem;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-10%) translateY(45%);
+  }
+  @media screen and (max-width: 500px) {
+    width: 17px;
+    height: 17px;
+    &::after {
+      transform: translateX(-20%) translateY(5%);
+    }
+  }
+}
+
+.console__reset {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  outline: none;
+  background: lightblue;
+  border-color: white;
+  &::after {
+    content: 'Reset';
+    font-family: "Lato", sans-serif;
+    position: absolute;
+    transform: translateX(-50%) translateY(100%);
+  }
+  @media screen and (max-width: 500px) {
+    width: 22px;
+    height: 22px;
+    &::after {
+      transform: translateX(-50%) translateY(-160%);
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .console__message {
+    width: 99px;
+    height: 33px;
+  }
+}
