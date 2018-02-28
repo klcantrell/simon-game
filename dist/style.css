@@ -9,7 +9,7 @@ body {
   align-items: center;
   justify-content: center; }
 
-#youMessage, #resetMessage, #winMessage {
+.youMessage, .resetMessage, .winMessage {
   visibility: hidden; }
 
 .board {
