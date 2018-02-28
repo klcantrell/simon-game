@@ -323,6 +323,7 @@ const gameView = (() => {
       el,
       play(cadence) {
         glow();
+        sound.load();
         sound.play();
         return new Promise((resolve) => {
           setTimeout(resolve, cadence);

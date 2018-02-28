@@ -535,6 +535,7 @@ var gameView = function () {
       el: el,
       play: function play(cadence) {
         glow();
+        sound.load();
         sound.play();
         return new Promise(function (resolve) {
           setTimeout(resolve, cadence);
