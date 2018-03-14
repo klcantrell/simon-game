@@ -19,9 +19,17 @@ module.exports = {
 	        options: {
 	          presets: [
 	            ['env', {
-	            	modules: false
+	            	modules: false,
+                exclude: [
+                  "transform-regenerator",
+                  "transform-async-to-generator"
+                ]
 	            }]
-	          ]
+	          ],
+            plugins: [
+              "syntax-async-functions",
+              "fast-async"
+            ]
 	        }
 	      }
 	    },
