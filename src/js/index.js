@@ -1,5 +1,6 @@
 import 'core-js/es6/promise';
 import 'core-js/fn/object/assign';
+import { Howl, Howler } from 'howler/dist/howler.core.min';
 import styles from '../scss/style.scss';
 
 let strictMode = false,
@@ -268,7 +269,7 @@ const gameView = (() => {
   function ColorButton(node) {
     let el = node,
         name = el.getAttribute('data-name'),
-        sound = new Audio(`https://s3.amazonaws.com/freecodecamp/simonSound${name}.mp3`),
+        sound = new Howl({ src: require(`../sounds/simonSound${name}.mp3`) }),
         classNames = el.className.split(' '),
         colorID = classNames[classNames.length - 1];
 
