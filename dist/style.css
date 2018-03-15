@@ -5,9 +5,10 @@ body {
   background: #86a096; }
 
 .simon {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  position: relative; }
+  @media screen and (max-width: 299.4012px) {
+    .simon {
+      min-width: 299.4012px; } }
 
 .youMessage, .resetMessage, .winMessage {
   visibility: hidden; }
@@ -28,7 +29,7 @@ body {
       height: 299.4012px; } }
 
 .green {
-  flex: 50%;
+  width: 50%;
   border: 10px solid #25282b;
   transition: background 1s;
   border-radius: 30px;
@@ -42,7 +43,7 @@ body {
   transition: background 300ms; }
 
 .red {
-  flex: 50%;
+  width: 50%;
   border: 10px solid #25282b;
   transition: background 1s;
   border-radius: 30px;
@@ -56,7 +57,7 @@ body {
   transition: background 300ms; }
 
 .yellow {
-  flex: 50%;
+  width: 50%;
   border: 10px solid #25282b;
   transition: background 1s;
   border-radius: 30px;
@@ -70,7 +71,7 @@ body {
   transition: background 300ms; }
 
 .blue {
-  flex: 50%;
+  width: 50%;
   border: 10px solid #25282b;
   transition: background 1s;
   border-radius: 30px;
@@ -106,7 +107,9 @@ body {
   border-radius: 40%;
   border: 1px solid #25282b;
   position: absolute;
-  align-self: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -151,14 +154,15 @@ body {
   .console__start::after {
     content: 'Start';
     font-family: "Lato", sans-serif;
+    display: block;
     position: absolute;
-    transform: translateX(-50%) translateY(100%); }
+    transform: translateX(-30%) translateY(100%); }
   @media screen and (max-width: 500px) {
     .console__start {
       width: 22px;
       height: 22px; }
       .console__start::after {
-        transform: translateX(-50%) translateY(-160%); } }
+        transform: translateX(-30%) translateY(-160%); } }
 
 .console__strict {
   width: 23px;
@@ -228,14 +232,15 @@ body {
   .console__reset::after {
     content: 'Reset';
     font-family: "Lato", sans-serif;
+    display: block;
     position: absolute;
-    transform: translateX(-50%) translateY(100%); }
+    transform: translateX(-30%) translateY(100%); }
   @media screen and (max-width: 500px) {
     .console__reset {
       width: 22px;
       height: 22px; }
       .console__reset::after {
-        transform: translateX(-50%) translateY(-160%); } }
+        transform: translateX(-30%) translateY(-160%); } }
 
 @media screen and (max-width: 500px) {
   .console__message {

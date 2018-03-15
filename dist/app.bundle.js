@@ -1645,17 +1645,6 @@ function cpuTurn() {
 function playerTurn(patternToMatch) {
   userInterface.clearPattern();
   return new Promise(function (finalResolve) {
-    function escape(resolveStream) {
-      resolveStream();
-    }
-    if (!playerEscapeAdded) {
-      playerEscapeAdded = true;
-      gameView.restartEl.addEventListener('click', function resetDuringPlayerTurn() {
-        playerEscapeAdded = false;
-        escape(finalResolve);
-        gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
-      });
-    }
 
     function receiveInput(e) {
       userInterface.addStepFromUser(e);
@@ -1672,6 +1661,7 @@ function playerTurn(patternToMatch) {
         return Promise.resolve(true);
       }
     }
+
     function isSuccessfulTurn(e) {
       return new Promise(function ($return, $error) {
         var lastTurnIndex, isPlayerInputMatched;
@@ -1682,10 +1672,12 @@ function playerTurn(patternToMatch) {
             if (!isPlayerInputMatched) {
               finalResolve(false);
               gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+              gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
             }
             if (lastTurnIndex === patternToMatch.length - 1) {
               finalResolve(true);
               gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+              gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
             }
             return $return();
           }.$asyncbind(this, $error), $error);
@@ -1693,6 +1685,13 @@ function playerTurn(patternToMatch) {
       }.$asyncbind(this));
     }
 
+    function resetDuringPlayerTurn() {
+      finalResolve();
+      gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+      gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
+    }
+
+    gameView.restartEl.addEventListener('click', resetDuringPlayerTurn);
     gameView.boardEl.addEventListener('click', isSuccessfulTurn);
   });
 }
@@ -1713,6 +1712,11 @@ function gameLoop() {
       simonMorphTo(you);
       return playerTurn(cpuPattern).then(function ($await_8) {
         playerTurnVerdict = $await_8;
+        if (resetTriggered) {
+          console.log('reset triggered here?');
+          return $return();
+        }
+        console.log('code still running?');
         if (!playerTurnVerdict) {
           if (strictMode) {
             simonMorphTo(reset);

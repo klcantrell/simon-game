@@ -382,17 +382,6 @@ function cpuTurn() {
 function playerTurn(patternToMatch) {
   userInterface.clearPattern();
   return new Promise((finalResolve) => {
-    function escape(resolveStream) {
-      resolveStream();
-    }
-    if (!playerEscapeAdded) {
-      playerEscapeAdded = true;
-      gameView.restartEl.addEventListener('click', function resetDuringPlayerTurn() {
-        playerEscapeAdded = false;
-        escape(finalResolve);
-        gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
-      });
-    }
 
     function receiveInput(e) {
       userInterface.addStepFromUser(e);
@@ -409,19 +398,29 @@ function playerTurn(patternToMatch) {
         return Promise.resolve(true);
       }
     }
+
     async function isSuccessfulTurn(e) {
       let lastTurnIndex = await receiveInput(e),
           isPlayerInputMatched = await checkInput(lastTurnIndex);
       if (!isPlayerInputMatched) {
         finalResolve(false);
         gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+        gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
       }
       if (lastTurnIndex === (patternToMatch.length - 1)) {
         finalResolve(true);
         gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+        gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
       }
     }
 
+    function resetDuringPlayerTurn() {
+      finalResolve();
+      gameView.boardEl.removeEventListener('click', isSuccessfulTurn);
+      gameView.restartEl.removeEventListener('click', resetDuringPlayerTurn);
+    }
+
+    gameView.restartEl.addEventListener('click', resetDuringPlayerTurn);
     gameView.boardEl.addEventListener('click', isSuccessfulTurn);
   });
 }
@@ -437,6 +436,9 @@ async function gameLoop() {
   gameView.stepsEl.textContent = cpuPattern.length;
   simonMorphTo(you);
   let playerTurnVerdict = await playerTurn(cpuPattern);
+  if (resetTriggered) {
+    return;
+  }
   if (!playerTurnVerdict) {
     if (strictMode) {
       simonMorphTo(reset);
