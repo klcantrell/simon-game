@@ -37,9 +37,10 @@ body {
 }
 
 .simon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  @media screen and (max-width: $board-size / 1.67) {
+    min-width: $board-size / 1.67; 
+  }
 }
 
 .youMessage, .resetMessage, .winMessage {
@@ -63,7 +64,7 @@ body {
 }
 
 @include all-color-buttons {
-  flex: 50%;
+  width: 50%;
   border: 10px solid $border-color;
   transition: background 1s;
   border-radius: 30px;
@@ -96,7 +97,9 @@ body {
   border-radius: 40%;
   border: 1px solid $border-color;
   position: absolute;
-  align-self: center;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -145,14 +148,15 @@ body {
   &::after {
     content: 'Start';
     font-family: "Lato", sans-serif;
+    display: block;
     position: absolute;
-    transform: translateX(-50%) translateY(100%);
+    transform: translateX(-30%) translateY(100%);
   }
   @media screen and (max-width: 500px) {
     width: 22px;
     height: 22px;
     &::after {
-      transform: translateX(-50%) translateY(-160%);
+      transform: translateX(-30%) translateY(-160%);
     }
   }
 }
@@ -234,14 +238,15 @@ body {
   &::after {
     content: 'Reset';
     font-family: "Lato", sans-serif;
+    display: block;
     position: absolute;
-    transform: translateX(-50%) translateY(100%);
+    transform: translateX(-30%) translateY(100%);
   }
   @media screen and (max-width: 500px) {
     width: 22px;
     height: 22px;
     &::after {
-      transform: translateX(-50%) translateY(-160%);
+      transform: translateX(-30%) translateY(-160%);
     }
   }
 }
