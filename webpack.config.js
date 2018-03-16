@@ -1,5 +1,6 @@
 const path = require('path'),
-      HtmlWebpackPlugin = require('html-webpack-plugin');
+      HtmlWebpackPlugin = require('html-webpack-plugin'),
+      CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -55,6 +56,17 @@ module.exports = {
             name: 'sounds/[name].mp3'
           }
         }
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/',
+            // publicPath: 'https://s3.us-east-2.amazonaws.com/kals-simon-game/'
+          }
+        }
       }
     ]
 	},
@@ -62,5 +74,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
+    // new CompressionPlugin({
+    //   asset: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.ttf$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8,
+    //   deleteOriginalAssets: true
+    // })
   ]
 }

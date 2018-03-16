@@ -189,6 +189,7 @@ export default function GameLogic() {
   return {
     gameLoop,
     delayStart,
+    resetGame,
     init
   }
 

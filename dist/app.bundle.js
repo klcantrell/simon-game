@@ -3440,6 +3440,7 @@ function GameLogic() {
   return {
     gameLoop: gameLoop,
     delayStart: delayStart,
+    resetGame: resetGame,
     init: init
   };
 }

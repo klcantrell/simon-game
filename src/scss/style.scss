@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Regular.ttf') format('truetype');
+}
+
 $board-size: 500px;
 $button-classes: '.green', '.red', '.yellow', '.blue';
 $button-colors: ('.green': #44c128, '.red': #c92626, '.yellow': #c9c926, '.blue': #2522b7);
@@ -39,7 +44,7 @@ body {
 .simon {
   position: relative;
   @media screen and (max-width: $board-size / 1.67) {
-    min-width: $board-size / 1.67; 
+    min-width: $board-size / 1.67;
   }
 }
 
