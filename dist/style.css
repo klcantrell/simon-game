@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Lato';
-  src: url(fonts/Lato-Regular.ttf) format("truetype"); }
+  src: url(https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/fonts/Lato-Regular.ttf) format("truetype"); }
 
 * {
   box-sizing: border-box; }
@@ -21,9 +21,12 @@ body {
   width: 500px;
   height: 500px;
   margin: auto;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
   border-radius: 50%;
   border: 30px solid #25282b;
   overflow: hidden; }
@@ -35,7 +38,7 @@ body {
 .green {
   width: 50%;
   border: 10px solid #25282b;
-  transition: background 1s;
+  transition: background 1.5s;
   border-radius: 30px;
   background: #44c128; }
 
@@ -44,12 +47,12 @@ body {
 
 .green--played {
   background: #49fa22;
-  transition: background 300ms; }
+  transition: background 300ms !important; }
 
 .red {
   width: 50%;
   border: 10px solid #25282b;
-  transition: background 1s;
+  transition: background 1.5s;
   border-radius: 30px;
   background: #c92626; }
 
@@ -58,12 +61,12 @@ body {
 
 .red--played {
   background: #fd2525;
-  transition: background 300ms; }
+  transition: background 300ms !important; }
 
 .yellow {
   width: 50%;
   border: 10px solid #25282b;
-  transition: background 1s;
+  transition: background 1.5s;
   border-radius: 30px;
   background: #c9c926; }
 
@@ -72,12 +75,12 @@ body {
 
 .yellow--played {
   background: #fdfd25;
-  transition: background 300ms; }
+  transition: background 300ms !important; }
 
 .blue {
   width: 50%;
   border: 10px solid #25282b;
-  transition: background 1s;
+  transition: background 1.5s;
   border-radius: 30px;
   background: #2522b7; }
 
@@ -86,7 +89,7 @@ body {
 
 .blue--played {
   background: #130ffd;
-  transition: background 300ms; }
+  transition: background 300ms !important; }
 
 .green {
   border-top: 0;
@@ -114,10 +117,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  align-items: center; }
+  -ms-flex-flow: column;
+      flex-flow: column;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center; }
   @media screen and (max-width: 500px) {
     .console {
       height: 133.33333px;
@@ -140,9 +147,12 @@ body {
 
 .console__controls {
   margin-top: 1%;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   width: 90%; }
   @media screen and (max-width: 500px) {
     .console__controls {

@@ -8,7 +8,7 @@ export default function GameLogic() {
       CPU,
       userInterface;
 
-  function init(dependencies = {view, model}) {
+  function init(dependencies = {view: '', model: ''}) {
     view = dependencies.view;
     model = dependencies.model;
     CPU = bootCPU();

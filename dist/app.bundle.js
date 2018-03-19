@@ -3216,7 +3216,7 @@ function GameLogic() {
       userInterface = void 0;
 
   function init() {
-    var dependencies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { view: view, model: model };
+    var dependencies = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { view: '', model: '' };
 
     view = dependencies.view;
     model = dependencies.model;
@@ -4042,7 +4042,7 @@ function GameView(logic, model) {
           return new Promise(function (resolve) {
             setTimeout(function () {
               resolve();
-            }, 300);
+            }, 500);
           });
         }
         function removeLighten() {
@@ -4099,9 +4099,9 @@ function GameView(logic, model) {
       });
     });
     state.startEl.addEventListener('click', function startGame() {
+      state.startEl.removeEventListener('click', startGame);
       Promise.all([state.colorButtonComponents.green.gameStartAnimation(), state.colorButtonComponents.red.gameStartAnimation(), state.colorButtonComponents.yellow.gameStartAnimation(), state.colorButtonComponents.blue.gameStartAnimation()]).then(function () {
         logic.gameLoop();
-        state.startEl.removeEventListener('click', startGame);
       });
     });
     state.strictEl.addEventListener('change', function toggleStrict(e) {
@@ -4932,27 +4932,27 @@ webpackContext.id = 87;
 
 /***/ }),
 /* 88 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "sounds/simonSound1.mp3";
+module.exports = "https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/simon-game/sounds/simonSound1.mp3";
 
 /***/ }),
 /* 89 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "sounds/simonSound2.mp3";
+module.exports = "https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/simon-game/sounds/simonSound2.mp3";
 
 /***/ }),
 /* 90 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "sounds/simonSound3.mp3";
+module.exports = "https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/simon-game/sounds/simonSound3.mp3";
 
 /***/ }),
 /* 91 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "sounds/simonSound4.mp3";
+module.exports = "https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/simon-game/sounds/simonSound4.mp3";
 
 /***/ }),
 /* 92 */

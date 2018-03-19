@@ -28,7 +28,7 @@ $border-color: #25282b;
     }
     #{$button-class}--played {
       background: saturateAndLighten($color);
-      transition: background 300ms;
+      transition: background 300ms !important;
     }
   }
 }
@@ -71,7 +71,7 @@ body {
 @include all-color-buttons {
   width: 50%;
   border: 10px solid $border-color;
-  transition: background 1s;
+  transition: background 1.5s;
   border-radius: 30px;
 }
 

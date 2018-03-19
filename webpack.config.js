@@ -44,7 +44,13 @@ module.exports = {
             }
           },
           'extract-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
+          'postcss-loader',
           'sass-loader'
         ]
       },
@@ -53,7 +59,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: 'sounds/[name].mp3'
+            name: '[name].mp3',
+            outputPath: 'sounds/',
+            publicPath: 'https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/simon-game/sounds'
           }
         }
       },
@@ -64,7 +72,7 @@ module.exports = {
           options: {
             name: '[name].[ext]',
             outputPath: 'fonts/',
-            // publicPath: 'https://s3.us-east-2.amazonaws.com/kals-simon-game/'
+            publicPath: 'https://s3.us-east-2.amazonaws.com/kals-portfolio-assets/fonts/'
           }
         }
       }
@@ -72,7 +80,8 @@ module.exports = {
 	},
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'index.html',
+      inject: false
     })
     // new CompressionPlugin({
     //   asset: "[path].gz[query]",

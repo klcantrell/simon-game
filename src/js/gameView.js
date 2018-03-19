@@ -25,7 +25,7 @@ export default function GameView(logic, model) {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve();
-          }, 300)
+          }, 500)
         });
       }
       function removeLighten() {
@@ -83,6 +83,7 @@ export default function GameView(logic, model) {
         });
     });
     state.startEl.addEventListener('click', function startGame() {
+      state.startEl.removeEventListener('click', startGame);
       Promise.all([
         state.colorButtonComponents.green.gameStartAnimation(),
         state.colorButtonComponents.red.gameStartAnimation(),
@@ -91,7 +92,6 @@ export default function GameView(logic, model) {
       ])
       .then(() => {
         logic.gameLoop();
-        state.startEl.removeEventListener('click', startGame);
       });
     });
     state.strictEl.addEventListener('change', function toggleStrict(e) {
