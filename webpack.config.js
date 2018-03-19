@@ -1,6 +1,7 @@
 const path = require('path'),
       HtmlWebpackPlugin = require('html-webpack-plugin'),
-      CompressionPlugin = require('compression-webpack-plugin');
+      CompressionPlugin = require('compression-webpack-plugin'),
+      MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -47,7 +48,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2
+              importLoaders: 2,
+              minimize: true
             }
           },
           'postcss-loader',
@@ -81,7 +83,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      inject: false
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        html5: true,
+        minifyCSS: true,
+        removeComments: true,
+        removeEmptyAttributes: true
+      }
+    }),
+    new MinifyPlugin({}, {
+      exclude: /node_modules/
     })
     // new CompressionPlugin({
     //   asset: "[path].gz[query]",
