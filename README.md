@@ -1,4 +1,4 @@
-# simon-game
+# Simon: Morph Edition
 ### Exercise your memory muscles with a this game of tones, lights, and patterns.
 
 This app is a browser based implementation of the original Simon game. The game creates a pattern of tones and lights, and challenges the user to repeat the pattern in exact sequence. This user interface features morphing text that reminds the user whose turn it is and whether they've succeeded or failed.
