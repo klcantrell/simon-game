@@ -6,7 +6,7 @@ This app is a browser based implementation of the original Simon game. The game 
 User can:
 
 * See the same series of button presses but with an additional step each time they input the pattern correctly
-*Hear a sound that corresponds to each button both when the series plays for them and when they press a button
+* Hear a sound that corresponds to each button both when the series plays for them and when they press a button
 * Get notified when they press a wrong button and the series of starts again to remind them of the pattern so they can try again
 * See how many steps are in the current series of button presses
 * Hit a button to restart the game to a single step
@@ -15,5 +15,5 @@ User can:
 
 Tech Highlights:
 
-* Used async functions for handling the flow of the game
+* Used **async functions** for handling the flow of the game
 * Composed the functionality of the CPU and player objects with small factory functions
