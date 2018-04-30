@@ -17,3 +17,6 @@ Tech Highlights:
 
 * Used **async functions** for handling the flow of the game
 * Composed the functionality of the CPU and player objects with small factory functions
+
+#### Visit the site!
+#### https://simon-morphedition.surge.sh/
