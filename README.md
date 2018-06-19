@@ -15,7 +15,7 @@ User can:
 
 Tech Highlights:
 
-* Used **async functions** for handling the flow of the game
+* Used **async functions** to control how the game responds to user interactions
 * Composed the functionality of the CPU and player objects with small factory functions
 
 #### Visit the site!
